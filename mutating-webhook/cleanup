@@ -1,0 +1,4 @@
+#!/bin/bash
+
+kubectl delete -f k8s/webhook-server.yaml
+kubectl delete MutatingWebhookConfiguration conduit-inject-webhook

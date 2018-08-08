@@ -12,7 +12,7 @@ This is a toy example. It is based on the examples in [caesarxuchao/example-webh
 
 ## What this example webhook does
 
-In `mutating-webhook/main.go` we define a mutating wehbook server that accepts requests from the k8s apiserver.
+In `mutating-webhook/main.go` we define a mutating webhook server that accepts requests from the k8s apiserver.
 It processes the request and always accepts the request for admission.
 In addition, it modifies any pod specs to include the annotation `conduit.io=im-injected`.
 
@@ -64,7 +64,7 @@ This is intended as a basis for replacing `conduit inject` with an admission con
 But until installing the webhook is actually packaged into `conduit install`, you'll
 need to install conduit *before* deploying the webhook, otherwise conduit's pods will also
 pass through the webhook (as is, this is fine since the webhook admits all pods and simply
-adds an annotiation, but the goal is that the webhook injects conduit, which we don't want
+adds an annotation, but the goal is that the webhook injects conduit, which we don't want
 to do on conduit's pods).
 
 TLDR: If you'd like to run this in order to modify pods before they are deployed in conduit,
@@ -79,6 +79,6 @@ kubectl apply -f mutating-webhook/k8s/webhook-server.yaml
 # deploy an example application
 curl https://raw.githubusercontent.com/runconduit/conduit-examples/master/emojivoto/emojivoto.yml | conduit inject - | kubectl apply -f -
 
-#inspect the example app's pods for our injected annotation
+# inspect the example app's pods for our injected annotation
 kubectl describe po -n emojivoto
 ```
